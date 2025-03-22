@@ -1,40 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Typewriter } from "react-simple-typewriter";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
+  const [isLandscape, setIsLandscape] = useState(false);
   const [screenHeight, setScreenHeight] = useState(0);
-  const [screenWidth, setScreenWidth] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Calculate aspect ratio once instead of in render
-  const isLandscape = useMemo(() => screenWidth / screenHeight > 1.5, [screenWidth, screenHeight]);
 
   useEffect(() => {
-    // Function to update the screen height
-    const updateScreenSize = () => {
-      setScreenHeight(window.innerHeight);
-      setScreenWidth(window.innerWidth);
-    };
-
-    // Set initial screen height
-    updateScreenSize();
-
-    // Add event listener for window resize with debouncing
-    let timeoutId: NodeJS.Timeout;
-    const handleResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(updateScreenSize, 100);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      clearTimeout(timeoutId);
-    };
+    setScreenHeight(window.innerHeight);
+    setIsLandscape(window.innerWidth > window.innerHeight);
   }, []);
   
   // Gradient styles for landscape images
@@ -43,12 +23,19 @@ export default function Home() {
     WebkitMaskImage: "linear-gradient(to right, black 80%, transparent 100%)",
   };
 
+  // Render a fallback while waiting for the client-side values
+  if (screenHeight === 0) {
+    return (
+      <div className="flex flex-col bg-background min-h-screen">
+        <div className="w-full h-screen bg-gray-800 animate-pulse" />
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col bg-black/50 min-h-screen">
+    <div className="flex flex-col bg-background min-h-screen">
       <div className="relative w-full h-screen">
-        {!screenHeight ? (
-          <div className="w-full h-screen bg-gray-800 animate-pulse" />
-        ) : isLandscape ? (
+        {isLandscape ? (
           <Image  // landscape
             src="/hero_h.jpg"
             alt="Hero Image"
@@ -71,21 +58,52 @@ export default function Home() {
             onError={() => console.error("Failed to load hero image")}
           />
         )}
-        <div className={`absolute top-30 left-1/2 flex items-center justify-center transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          <h1 className="text-4xl font-bold text-white">
-            Welcome to My Website
-          </h1>
+        <div
+          className={cn(
+            "absolute top-1/2 left-6/10 transform -translate-y-1/2 max-w-[40vw]",
+            `transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`
+          )}
+        >
+            <motion.h1
+              className="text-3xl font-bold"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              {Array.from("Hi, I am Austin").map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.h1>
+            <motion.h2
+              className="text-3xl font-semibold mt-4 whitespace-nowrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5, duration: 0.5 }}
+            >
+              I am{" "}
+              <span className="text-chart-2">
+              <Typewriter
+                words={["an open source contributor", "a photographer", "a gamer"]}
+                loop={0}
+                cursor
+                cursorStyle="|"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+              </span>
+              <p>
+                 Based in <span className="text-chart-1">Bay Area 🌉</span>
+              </p>
+            </motion.h2>
         </div>
-      </div>
-      {/* Page content section */}
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-white mb-6">
-          Welcome to My Website
-        </h1>
-        <p className="text-lg text-gray-300 mb-6">
-          This is a simple example of a responsive hero image.
-        </p>
-        {/* Add more content here */}
       </div>
     </div>
   );
