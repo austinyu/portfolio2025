@@ -26,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light" style={{colorScheme: "light"}}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <MainNav className="fixed top-1 left-1/2 transform -translate-x-1/2 z-99" />
           <ThemeChanger className="fixed top-3 right-10 transform translate-x-1/2 z-99" />
           {children}

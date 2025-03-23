@@ -12,7 +12,7 @@ export default function SocialsCard({ className }: { className?: string }) {
         href="https://github.com/austinyu"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-primary/90 hover:text-primary transition-transform transform hover:scale-110"
+        className="text-primary/90 hover:text-primary-foreground transition-transform transform hover:scale-110"
       >
         <FaGithub size={24} />
       </a>
