@@ -12,7 +12,7 @@ export default function SocialsCard({ className }: { className?: string }) {
         href="https://github.com/austinyu"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-primary/90 hover:text-primary-foreground transition-transform transform hover:scale-110"
+        className="text-primary/90 transition-transform transform hover:scale-110"
       >
         <FaGithub size={24} />
       </a>
@@ -22,7 +22,7 @@ export default function SocialsCard({ className }: { className?: string }) {
         href="https://linkedin.com/in/yourusername"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-700 hover:text-blue-900 transition-transform transform hover:scale-110"
+        className="text-blue-700 transition-transform transform hover:scale-110"
       >
         <FaLinkedin size={24} />
       </a>
@@ -32,7 +32,7 @@ export default function SocialsCard({ className }: { className?: string }) {
         href="https://twitter.com/yourusername"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 hover:text-blue-700 transition-transform transform hover:scale-110"
+        className="text-blue-500 transition-transform transform hover:scale-110"
       >
         <FaTwitter size={24} />
       </a>
@@ -40,7 +40,7 @@ export default function SocialsCard({ className }: { className?: string }) {
       {/* Email */}
       <a
         href="mailto:yourname@example.com"
-        className="text-red-500 hover:text-red-700 transition-transform transform hover:scale-110"
+        className="text-red-500 transition-transform transform hover:scale-110"
       >
         <FaEnvelope size={24} />
       </a>
