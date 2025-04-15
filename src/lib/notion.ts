@@ -1,5 +1,18 @@
+const NOTION_BLOG_ID = "1d488b4478e3816d8ecceff35e3fe7af";
 
-import { NotionAPI } from 'notion-client'
+export interface Post {
+  id: string;
+  name: string;
+  description: string;
+  public: boolean;
+  featured: boolean;
+  published: string;
+  tags: string[];
+  lastUpdated: string;
+}
 
-const notion = new NotionAPI()
-export default notion
+export const getAllPosts = async (): Promise<Post[]> => {
+  return await fetch(
+    `https://notion-api.splitbee.io/v1/table/${NOTION_BLOG_ID}`
+  ).then((res) => res.json());
+};
