@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { MainNav, ThemeChanger } from "@/components/NavBars";
+import "../styles/globals.css";
+import { MainNav } from "@/components/NavBars";
 import SocialsCard from "@/components/Socials";
-import { ThemeProvider } from "next-themes";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,20 +26,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light" style={{colorScheme: "light"}}>
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
+        className={cn(
+          `${geistSans.variable} ${geistMono.variable}`,
+          "antialiased relative"
+        )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <MainNav className="fixed top-1 left-1/2 transform -translate-x-1/2 z-99" />
-          <ThemeChanger className="fixed top-3 right-10 transform translate-x-1/2 z-99" />
-          {children}
-          <SocialsCard className="fixed bottom-4 right-4" />
-        </ThemeProvider>
+        <MainNav className="fixed top-5 left-1/2 transform -translate-x-1/2 z-99" />
+        {children}
+        <SocialsCard className="fixed bottom-4 right-4" />
       </body>
     </html>
   );
-}
-{
-  /* <ThemeProvider attribute="data-mode"></ThemeProvider> */
 }

@@ -38,6 +38,7 @@ function renderNextImage(
         alt={alt}
         title={title}
         sizes={sizes}
+        className="rounded-sm"
         placeholder={"blurDataURL" in photo ? "blur" : undefined}
       />
     </div>
@@ -47,11 +48,11 @@ function renderNextImage(
 const GalleryPage = () => {
   const [index, setIndex] = useState(-1);
   return (
-    <div className={cn("flex flex-col min-h-screen px-20 pt-10", "bg-card")}>
-      <h1 className="text-4xl font-bold text-center mt-10 text-foreground drop-shadow-lg">
+    <div className={cn("flex flex-col min-h-screen px-20 pt-10")}>
+      <h1 className="text-4xl font-bold text-center mt-10 mb-5 text-foreground drop-shadow-lg">
         Gallery
       </h1>
-      <div className="backdrop-blur-sm bg-white/10 p-6 rounded-xl shadow-xl my-6">
+      <div>
         <RowsPhotoAlbum
           photos={photos}
           render={{ image: renderNextImage }}

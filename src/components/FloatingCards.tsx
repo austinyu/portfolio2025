@@ -12,8 +12,8 @@ export default function FloatingCard({
   return (
     <div
       className={cn(
-        "bg-sidebar-primary/10 hover:bg-foreground",
-        "text-sidebar-primary-foreground hover:text-background",
+        "bg-foreground/10 hover:bg-foreground",
+        "text-card hover:text-card",
         "p-2 rounded-lg shadow-lg",
         `flex items-center gap-4 z-50 transition-colors duration-200 ${className}`
       )}
