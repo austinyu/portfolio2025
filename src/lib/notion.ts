@@ -16,3 +16,8 @@ export const getAllPosts = async (): Promise<Post[]> => {
     `https://notion-api.splitbee.io/v1/table/${NOTION_BLOG_ID}`
   ).then((res) => res.json());
 };
+
+export const tagColors: Record<string, string> = {
+  "Computer Science": "#f7df1e",
+  "Travel": "#ff9999",
+};

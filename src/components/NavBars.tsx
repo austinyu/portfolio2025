@@ -18,7 +18,7 @@ const navLinks: NavLink[] = [
 
 export function MainNav({ className }: { className?: string }) {
   return (
-    <FloatingCard className={`${className || ""}`}>
+    <FloatingCard className={`${className} flex flex-col`}>
       {navLinks.map((link) => (
         <Link
           key={link.name}

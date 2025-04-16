@@ -48,8 +48,8 @@ function renderNextImage(
 const GalleryPage = () => {
   const [index, setIndex] = useState(-1);
   return (
-    <div className={cn("flex flex-col min-h-screen px-20 pt-10")}>
-      <h1 className="text-4xl font-bold text-center mt-10 mb-5 text-foreground drop-shadow-lg">
+    <div className={cn("flex flex-col min-h-screen max-w-[80vw] mx-auto")}>
+      <h1 className="text-4xl font-bold text-center my-10 text-foreground drop-shadow-lg">
         Gallery
       </h1>
       <div>

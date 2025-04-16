@@ -6,7 +6,7 @@ import FloatingCard from "@/components/FloatingCards";
 
 export default function SocialsCard({ className }: { className?: string }) {
   return (
-    <FloatingCard className={className}>
+    <FloatingCard className={`${className} flex items-center`}>
       {/* GitHub */}
       <a
         href="https://github.com/austinyu"
